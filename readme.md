@@ -1,3 +1,7 @@
 # Repository for class project
 
-This readme is a placeholder that should be replaced
+npm install
+npm run build
+npm start
+
+Go to server
