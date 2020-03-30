@@ -4,10 +4,10 @@
 
 //import 'bootstrap';
 
-let span = document.querySelector('#time-now');
 
-function main() {
-    span.textContent = 'Hello World';
+
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js');
 }
 
 //main();
