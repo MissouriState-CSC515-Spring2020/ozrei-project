@@ -1,15 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AppComponent } from './app.component';
-import { CatListComponent } from './cat_list.component';
-import { DescriptionComponent } from './description.component';
-import { CategoryComponent } from './category.component';
 
 
+/* Dynamically import the pages */
 const routes: Routes = [
-  { path: '', component: CatListComponent },
-  { path: 'description', component: DescriptionComponent },
-  { path: 'category', component: CategoryComponent },
+  { path: '', loadChildren: () => import('./catlist/catlist.module').then(m => m.CatlistModule) },
+  { path: 'description', loadChildren: () => import('./description/description.module').then(m => m.DescriptionModule) },
+  { path: 'category', loadChildren: () => import('./category/category.module').then(m => m.CategoryModule) },
 ];
 
 @NgModule({
