@@ -1,1 +1,46 @@
-<p>Welcome to the cat-egories page. It is currently empty.</p>
+<div>
+    <iframe id="main-iframe"
+        width="640" height="360"
+        src="https://www.youtube.com/embed/9EcO-nOu8QE"
+        frameborder="0"
+        style="border: solid 4px #37474F">   
+    </iframe>
+    <script>
+      var tag = document.createElement('script');
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('main-iframe', {
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+      function onPlayerReady(event) {
+        event.target.playVideo();
+        player.cuePlaylist({
+        	listType: 'playlist',
+            list: 'PL3tRBEVW0hiCbU34KBqgxr1QTyJ81TD8_',
+            suggestedQuality: 'hd720'
+        });
+      }
+
+      var done = false;
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING && !done) {
+          setTimeout(stopVideo, 6000);
+          done = true;
+        }
+		if (event.data == YT.PlayerState.ENDED && !done) {        
+            player.loadVideoById();
+        }
+      }
+      function stopVideo() {
+        player.stopVideo();
+      }
+    </script>
+</div>
+<script src="main.js"></script>
